@@ -14,6 +14,7 @@ import {
   SiExpress,
 } from "react-icons/si"
 import { useScrollAnimation } from "@/hooks/use-scroll-animation"
+import { useTheme } from "next-themes"
 
 const skills = [
   { name: "HTML", icon: SiHtml5, color: "#E34F26" },
@@ -32,8 +33,9 @@ const skills = [
 
 export default function Skills() {
   const { elementRef, isVisible } = useScrollAnimation()
+  const { resolvedTheme } = useTheme()
+  const isDark = resolvedTheme === "dark"
 
-  // Duplicate skills for seamless infinite scroll
   const duplicatedSkills = [...skills, ...skills,...skills]
 
   return (
@@ -59,10 +61,10 @@ export default function Skills() {
             <div className="flex animate-scroll">
               {duplicatedSkills.map((skill, index) => (
                 <div key={`${skill.name}-${index}`} className="flex-shrink-0 mx-6 group">
-                  <div className="bg-background border border-border rounded-xl p-8 hover:border-accent transition-all duration-300 hover:scale-110 w-40 h-40 flex flex-col items-center justify-center gap-4">
+                  <div className="bg-background border border-border rounded-xl p-8 hover:border-accent interactive-soft transition-all duration-300 hover:scale-110 w-40 h-40 flex flex-col items-center justify-center gap-4">
                     <skill.icon
                       className="w-16 h-16 transition-transform duration-300 group-hover:scale-110"
-                      style={{ color: skill.color }}
+                      style={{ color: (typeof skill.color === "string" && skill.color.toLowerCase() === "#ffffff") ? (isDark ? "#ffffff" : "#111111") : skill.color }}
                     />
                     <p className="text-foreground text-sm font-medium text-center">{skill.name}</p>
                   </div>

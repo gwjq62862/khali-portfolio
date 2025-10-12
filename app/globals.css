@@ -130,9 +130,49 @@
   body {
     @apply bg-background text-foreground;
   }
+  h1,h2,h3,h4,h5,h6 {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--foreground);
+    text-wrap: balance;
+  }
+  p {
+    color: var(--foreground);
+    line-height: 1.75;
+    text-wrap: pretty;
+  }
+
+  /* Ensure UI controls inherit typography */
+  button, input, select, textarea {
+    font: inherit;
+    color: inherit;
+    letter-spacing: inherit;
+  }
+
+  /* Numeric and typography tuning */
+  html {
+    font-variant-numeric: proportional-nums;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Smooth interactive transitions */
+  :where(a, button) {
+    transition-property: color, background-color, border-color, box-shadow, transform, opacity;
+    transition-duration: 200ms;
+    transition-timing-function: cubic-bezier(.2,.8,.2,1);
+  }
+
+  :where(a, button):focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring) 30%, transparent);
+    border-color: var(--ring);
+  }
 }
 
-/* Custom Gradient Classes for the portfolio design system */
+
 .gradient-text {
   background: linear-gradient(
     90deg,
@@ -160,7 +200,7 @@
   );
 }
 
-/* Infinite Scroll Animation */
+
 @keyframes scroll {
   0% {
     transform: translateX(0);
@@ -175,7 +215,7 @@
   width: max-content;
 }
 
-/* Scroll-triggered animations for sections */
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -249,12 +289,11 @@
   animation: fadeIn 0.8s ease-out forwards;
 }
 
-/* Smooth Scrolling */
+
 html {
   scroll-behavior: smooth;
 }
 
-/* Custom Scrollbar for dark theme */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -271,3 +310,214 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: oklch(0.439 0 0);
 }
+
+
+
+
+
+:root {
+  /* Font families */
+  --font-heading: var(--font-sans);
+  --font-body: var(--font-sans);
+
+  /* Font weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+
+  --text-xs: 0.75rem;   /* 12px */
+  --text-sm: 0.875rem;  /* 14px */
+  --text-base: 1rem;    /* 16px */
+  --text-lg: 1.125rem;  /* 18px */
+  --text-xl: 1.25rem;   /* 20px */
+  --text-2xl: 1.5rem;   /* 24px */
+  --text-3xl: 1.875rem; /* 30px */
+  --text-4xl: 2.25rem;  /* 36px */
+  --text-5xl: 3rem;     /* 48px */
+  --text-6xl: 3.75rem;  /* 60px */
+  --text-7xl: 4.5rem;   /* 72px */
+}
+
+
+.h1 {
+  font-family: var(--font-sans);
+  font-size: clamp(2.25rem, 2.5vw + 1.5rem, 3.75rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--foreground);
+  text-wrap: balance;
+}
+
+.h2 {
+  font-family: var(--font-sans);
+  font-size: clamp(1.875rem, 1.5vw + 1rem, 3rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+  text-wrap: balance;
+}
+
+.h3 {
+  font-family: var(--font-sans);
+  font-size: clamp(1.5rem, 1vw + 0.75rem, 2.25rem);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+}
+
+.h4 {
+  font-family: var(--font-sans);
+  font-size: clamp(1.25rem, 0.8vw + 0.6rem, 1.875rem);
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: var(--foreground);
+}
+
+.h5 {
+  font-family: var(--font-sans);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--foreground);
+}
+
+.h6 {
+  font-family: var(--font-sans);
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--foreground);
+}
+
+.body {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: 400;
+  line-height: 1.75;
+  color: var(--foreground);
+}
+
+.body-sm {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--muted-foreground);
+}
+
+.caption {
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+.link {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-medium);
+  color: var(--primary);
+  transition: color 0.2s ease;
+}
+
+.link:hover {
+  color: var(--color-gradient-mid-2);
+}
+
+/* Modern, clean typography utilities */
+.typography {
+  --flow-space: 0.75em;
+}
+.typography > * + * { /* vertical rhythm */
+  margin-top: var(--flow-space);
+}
+.typography h1 { margin: 0 0 0.4em; }
+.typography h2 { margin: 0.2em 0 0.4em; }
+.typography h3 { margin: 0.4em 0 0.4em; }
+.typography p { margin: 0.5em 0; }
+.typography .lead {
+  font-size: clamp(1.125rem, 0.6vw + 0.9rem, 1.25rem);
+  line-height: 1.75;
+  color: var(--muted-foreground);
+}
+.typography .eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-weight: 600;
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+}
+.typography a {
+  color: var(--primary);
+  text-decoration: none;
+  border-bottom: 1px dashed transparent;
+  transition: color .2s ease, border-color .2s ease;
+}
+.typography a:hover { color: var(--accent); border-color: var(--accent); }
+
+/* Premium hover utilities */
+.hover-underline {
+  background-image: linear-gradient(to right, var(--accent), var(--accent));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 2px;
+  transition: background-size .25s ease;
+}
+.hover-underline:hover {
+  background-size: 100% 2px;
+}
+
+.hover-raise {
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.hover-raise:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px color-mix(in oklab, var(--foreground) 10%, transparent);
+  border-color: var(--accent);
+}
+
+.interactive-soft:hover {
+  background-color: color-mix(in oklab, var(--accent) 10%, transparent);
+}
+
+
+
+@media (max-width: 1024px) {
+  .h1 { font-size: var(--text-5xl); }
+  .h2 { font-size: var(--text-4xl); }
+  .h3 { font-size: var(--text-3xl); }
+}
+
+@media (max-width: 640px) {
+  .h1 { font-size: var(--text-4xl); }
+  .h2 { font-size: var(--text-3xl); }
+  .h3 { font-size: var(--text-2xl); }
+}
+
+
+
+.h1.gradient-text,
+.h2.gradient-text,
+.h3.gradient-text {
+  background: linear-gradient(
+    90deg,
+    var(--color-gradient-start),
+    var(--color-gradient-mid-1),
+    var(--color-gradient-mid-2),
+    var(--color-gradient-mid-3),
+    var(--color-gradient-mid-4),
+    var(--color-gradient-end)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+

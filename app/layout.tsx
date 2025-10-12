@@ -1,21 +1,15 @@
 import type React from "react"
-import { Geist, Geist_Mono } from "next/font/google"
+import {  Inter,Poppins } from "next/font/google"
 import "./globals.css"
+import { ThemeProvider } from "@/components/theme-provider"
 
-const geistSans = Geist({
-  subsets: ["latin"],
-  variable: "--font-geist-sans",
-})
-
-const geistMono = Geist_Mono({
-  subsets: ["latin"],
-  variable: "--font-geist-mono",
-})
+const inter = Inter({ subsets: ["latin"], variable: "--font-body" })
+const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-heading" })
 
 export const metadata = {
   title: "Kahli - Full Stack Developer",
   description: "Portfolio of Kahli, a 17-year-old full-stack developer from Myanmar",
-    generator: 'v0.app'
+
 }
 
 export default function RootLayout({
@@ -24,9 +18,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`dark ${geistSans.variable} ${geistMono.variable} antialiased`}>
-      <body className="bg-background text-foreground font-sans">{children}
-       
+    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${poppins.variable} antialiased`}>
+      <body className="text-foreground font-sans">
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   )
